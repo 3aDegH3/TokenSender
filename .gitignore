@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+
+# PNPM store
+.pnpm-store/
+
+# Next.js build output
+.next/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Mac / Linux / Windows system files
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Optional: editor folders
+.vscode/
+.idea/
