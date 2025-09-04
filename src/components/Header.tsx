@@ -49,7 +49,7 @@ export default function Header() {
         size: Math.random() * 15 + 5,
         color: Math.random() > 0.5 ? 
           `rgba(${147 + Math.random() * 50}, ${50 + Math.random() * 30}, ${200 + Math.random() * 55}, ${0.7 + Math.random() * 0.3})` : 
-          `rgba(${200 + Math.random() * 55}, ${50 + Math.random() * 30}, ${100 + Math.random() * 50}, ${0.7 + Math.random() * 0.3})`,
+          `rgba(${50 + Math.random() * 30}, ${150 + Math.random() * 50}, ${200 + Math.random() * 55}, ${0.7 + Math.random() * 0.3})`,
         life: 100, // عمر ذره (100% تا 0%)
         speedX: (Math.random() - 0.5) * 2,
         speedY: (Math.random() - 0.5) * 2,
@@ -93,8 +93,8 @@ export default function Header() {
         isScrolled ? "py-2" : "py-4"
       }`}
     >
-      {/* پس‌زمینه سیاه */}
-      <div className="absolute inset-0 bg-black"></div>
+      {/* پس‌زمینه تیره با گرادینت */}
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900"></div>
       
       {/* ذرات دنباله‌دار موس */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -122,37 +122,42 @@ export default function Header() {
       <div className="absolute inset-0 overflow-hidden">
         {/* لایه دود پایه - حرکت آهسته */}
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-900/10 to-red-900/10 rounded-full filter blur-3xl animate-smoke-1"></div>
-          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-red-900/10 to-yellow-900/10 rounded-full filter blur-3xl animate-smoke-2"></div>
-          <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-r from-purple-900/10 to-red-900/10 rounded-full filter blur-3xl animate-smoke-3"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-900/10 to-blue-900/10 rounded-full filter blur-3xl animate-smoke-1"></div>
+          <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-r from-blue-900/10 to-teal-900/10 rounded-full filter blur-3xl animate-smoke-2"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-r from-purple-900/10 to-blue-900/10 rounded-full filter blur-3xl animate-smoke-3"></div>
         </div>
         
         {/* لایه دود میانی - حرکت متوسط */}
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-1/3 left-1/5 w-64 h-64 bg-gradient-to-r from-purple-800/15 to-red-800/15 rounded-full filter blur-2xl animate-smoke-4"></div>
-          <div className="absolute top-1/2 right-1/5 w-56 h-56 bg-gradient-to-r from-red-800/15 to-yellow-800/15 rounded-full filter blur-2xl animate-smoke-5"></div>
-          <div className="absolute bottom-1/3 left-1/4 w-60 h-60 bg-gradient-to-r from-purple-800/15 to-red-800/15 rounded-full filter blur-2xl animate-smoke-6"></div>
+          <div className="absolute top-1/3 left-1/5 w-64 h-64 bg-gradient-to-r from-purple-800/15 to-blue-800/15 rounded-full filter blur-2xl animate-smoke-4"></div>
+          <div className="absolute top-1/2 right-1/5 w-56 h-56 bg-gradient-to-r from-blue-800/15 to-teal-800/15 rounded-full filter blur-2xl animate-smoke-5"></div>
+          <div className="absolute bottom-1/3 left-1/4 w-60 h-60 bg-gradient-to-r from-purple-800/15 to-blue-800/15 rounded-full filter blur-2xl animate-smoke-6"></div>
         </div>
         
         {/* لایه دود بالایی - حرکت سریع */}
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-gradient-to-r from-purple-700/20 to-red-700/20 rounded-full filter blur-xl animate-smoke-7"></div>
-          <div className="absolute top-2/3 right-1/3 w-40 h-40 bg-gradient-to-r from-red-700/20 to-yellow-700/20 rounded-full filter blur-xl animate-smoke-8"></div>
-          <div className="absolute bottom-1/2 left-2/5 w-44 h-44 bg-gradient-to-r from-purple-700/20 to-red-700/20 rounded-full filter blur-xl animate-smoke-9"></div>
+          <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-gradient-to-r from-purple-700/20 to-blue-700/20 rounded-full filter blur-xl animate-smoke-7"></div>
+          <div className="absolute top-2/3 right-1/3 w-40 h-40 bg-gradient-to-r from-blue-700/20 to-teal-700/20 rounded-full filter blur-xl animate-smoke-8"></div>
+          <div className="absolute bottom-1/2 left-2/5 w-44 h-44 bg-gradient-to-r from-purple-700/20 to-blue-700/20 rounded-full filter blur-xl animate-smoke-9"></div>
         </div>
         
-        {/* ذرات طلایی برای افکت قدرت و ثروت - فقط در سمت کلاینت رندر می‌شوند */}
+        {/* ذرات رنگی برای افکت قدرت و ثروت - فقط در سمت کلاینت رندر می‌شوند */}
         <div className="absolute top-0 left-0 w-full h-full">
           {smokeParticles.map(particle => (
             <div 
               key={particle.id}
-              className="absolute w-1 h-1 bg-yellow-500/30 rounded-full animate-particle"
+              className="absolute w-1 h-1 rounded-full animate-particle"
               style={{
                 top: particle.top,
                 left: particle.left,
                 animationDelay: particle.animationDelay,
                 animationDuration: particle.animationDuration,
-                transform: particle.transform
+                transform: particle.transform,
+                background: Math.random() > 0.5 
+                  ? 'rgba(147, 100, 230, 0.3)' 
+                  : Math.random() > 0.5 
+                    ? 'rgba(59, 130, 246, 0.3)' 
+                    : 'rgba(20, 184, 166, 0.3)'
               }}
             ></div>
           ))}
@@ -161,13 +166,13 @@ export default function Header() {
         {/* خطوط قدرت */}
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-0 left-1/4 w-0.5 h-full bg-gradient-to-b from-transparent via-purple-500/20 to-transparent animate-power-line-1"></div>
-          <div className="absolute top-0 right-1/4 w-0.5 h-full bg-gradient-to-b from-transparent via-red-500/20 to-transparent animate-power-line-2"></div>
-          <div className="absolute top-0 left-1/2 w-0.5 h-full bg-gradient-to-b from-transparent via-yellow-500/20 to-transparent animate-power-line-3"></div>
+          <div className="absolute top-0 right-1/4 w-0.5 h-full bg-gradient-to-b from-transparent via-blue-500/20 to-transparent animate-power-line-2"></div>
+          <div className="absolute top-0 left-1/2 w-0.5 h-full bg-gradient-to-b from-transparent via-teal-500/20 to-transparent animate-power-line-3"></div>
         </div>
       </div>
       
       <div className="container mx-auto px-4 flex items-center relative z-10">
-        {/* سمت چپ */}
+        {/* سمت چپ - دکمه گیت‌هاب */}
         <div className="flex-1 flex justify-start">
           <a
             href="https://github.com/3aDegH3/TokenSender"
@@ -175,36 +180,40 @@ export default function Header() {
             rel="noopener noreferrer"
             className="relative group overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm border border-purple-500/30 group-hover:border-purple-500/50 transition-all duration-300">
-              <FaGithub className="text-white group-hover:text-purple-300 transition-colors duration-300" size={20} />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/30 group-hover:border-purple-500/50 transition-all duration-300">
+              <FaGithub className="text-gray-300 group-hover:text-white transition-colors duration-300" size={20} />
             </div>
           </a>
         </div>
         
-        {/* وسط */}
+        {/* وسط - نام پروژه */}
         <div className="flex-1 text-center">
           <div className="inline-block relative">
-            <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-red-400 to-yellow-400 animate-pulse">
+            <h1 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-teal-400 animate-pulse">
               TSender
             </h1>
-            <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+            <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           </div>
         </div>
         
-        {/* سمت راست */}
+        {/* سمت راست - دکمه اتصال */}
         <div className="flex-1 flex justify-end">
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-red-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-300"></div>
             <div className="relative">
-              <ConnectButton />
+              <ConnectButton 
+                chainStatus="icon"
+                accountStatus="address"
+                showBalance={false}
+              />
             </div>
           </div>
         </div>
       </div>
       
       {/* خط نوار پیشرفت در بالای صفحه */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-600 via-red-600 to-yellow-600 animate-progress"></div>
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 animate-progress"></div>
     </header>
   );
 }
