@@ -1,28 +1,28 @@
-import "./globals.css"
-import type { Metadata } from "next"
-import { type ReactNode } from "react"
-import { Providers } from "./providers"
-import { ConnectButton } from "@rainbow-me/rainbowkit"
+import Header from "@/components/Header";
+import "./globals.css";
+
+import type { Metadata } from "next";
+import { type ReactNode } from "react";
+import { Providers } from "./providers";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export const metadata: Metadata = {
-    title: "TSender",
-    description: "Hyper gas-optimized bulk ERC20 token transfer",
-}
+  title: "TSender",
+  description: "Hyper gas-optimized bulk ERC20 token transfer",
+};
 
 export default function RootLayout(props: { children: ReactNode }) {
-    return (
-        <html lang="en">
-            <head>
-                <link rel="icon" href="/T-Sender.svg" sizes="any" />
-            </head>
-            <body className="bg-zinc-50">
-                <Providers>
-                    <div className="p-4 flex justify-end">
-                        <ConnectButton />
-                    </div>
-                    {props.children}
-                </Providers>
-            </body>
-        </html>
-    )
+  return (
+    <html lang="en">
+      <head>
+        <link rel="icon" href="/T-Sender.svg" sizes="any" />
+      </head>
+      <body className="bg-zinc-50">
+        <Providers>
+          <Header />
+          {props.children}
+        </Providers>
+      </body>
+    </html>
+  );
 }
