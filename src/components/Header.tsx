@@ -2,7 +2,6 @@
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { FaGithub } from "react-icons/fa";
-import { truncateAddress } from "@/lib/truncate";
 import { useState, useEffect, useRef } from "react";
 
 export default function Header() {
