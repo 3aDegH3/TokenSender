@@ -1,4 +1,3 @@
-// src/components/ui/Tabs.tsx
 "use client";
 import React, { createContext, useContext, useState } from 'react';
 
@@ -13,9 +12,10 @@ interface TabsProps {
   defaultValue: string;
   children: React.ReactNode;
   onValueChange?: (value: string) => void;
+  className?: string; // <-- اضافه شد
 }
 
-export function Tabs({ defaultValue, children, onValueChange }: TabsProps) {
+export function Tabs({ defaultValue, children, onValueChange, className = "" }: TabsProps) {
   const [value, setValue] = useState(defaultValue);
   
   const handleValueChange = (newValue: string) => {
@@ -25,7 +25,7 @@ export function Tabs({ defaultValue, children, onValueChange }: TabsProps) {
   
   return (
     <TabsContext.Provider value={{ value, onValueChange: handleValueChange }}>
-      <div className="w-full">{children}</div>
+      <div className={`w-full ${className}`.trim()}>{children}</div>
     </TabsContext.Provider>
   );
 }
