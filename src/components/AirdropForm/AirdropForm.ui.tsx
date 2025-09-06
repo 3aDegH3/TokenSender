@@ -114,8 +114,8 @@ export default function AirdropFormUI(props: Props) {
   // If wallet is not connected => show attractive connection banner
   if (!isClient || !isConnected) {
     return (
-      <div className="max-w-3xl mx-auto w-full px-4">
-        <div className="mb-6 p-8 rounded-2xl bg-gradient-to-br from-purple-900/30 via-blue-900/30 to-teal-900/30 border border-purple-500/20 shadow-xl backdrop-blur-sm relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-purple-400/30">
+      <div className="max-w-3xl mx-auto w-full px-4 sm:px-6">
+        <div className="mb-6 p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-purple-900/30 via-blue-900/30 to-teal-900/30 border border-purple-500/20 shadow-xl backdrop-blur-sm relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-purple-400/30">
           {/* Background effects */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-full filter blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-br from-blue-500/10 to-teal-500/10 rounded-full filter blur-3xl"></div>
@@ -134,8 +134,8 @@ export default function AirdropFormUI(props: Props) {
               <span className="font-medium text-purple-300"> Connect </span>
               button at the top of the page.
             </p>
-            <div className="mt-2 text-sm text-gray-300 flex items-center justify-center">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-600/20 text-purple-200 mr-2">
+            <div className="mt-2 text-sm text-gray-300 flex flex-col sm:flex-row items-center justify-center gap-2">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-600/20 text-purple-200">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -163,7 +163,7 @@ export default function AirdropFormUI(props: Props) {
   }
   
   return (
-    <div className="max-w-3xl mx-auto w-full px-4">
+    <div className="max-w-3xl mx-auto w-full px-4 sm:px-6">
       {/* Subtle success banner */}
       {isConfirmed && (
         <div className="mb-4 p-3 bg-emerald-900/30 border border-emerald-700/40 rounded-lg text-emerald-100">
@@ -172,23 +172,28 @@ export default function AirdropFormUI(props: Props) {
         </div>
       )}
       
-      <div className="flex items-center justify-between w-full mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full mb-6 gap-4">
         <h2 className="text-xl font-semibold text-white flex-shrink-0">T-Sender</h2>
-        <div className="ml-auto">
-          {/* Tabs */}
+        <div className="w-full sm:w-auto">
+          {/* Responsive Tabs */}
           <Tabs
             defaultValue={localIsUnsafeMode ? "true" : "false"}
             onValueChange={(v: string) => {
               setLocalIsUnsafeMode(v === "true");
             }}
-            className="inline-flex"
+            className="w-full"
           >
-            <TabsList className="inline-flex items-center bg-gray-800 border border-gray-700 rounded-lg">
-              <TabsTrigger value="false" className="rounded-l-lg px-4 py-2 flex items-center gap-2">
-                <span>Safe Mode</span>
-                <span className="text-xs bg-emerald-700/30 text-emerald-100 px-2 py-0.5 rounded-full">Default</span>
+            <TabsList className="w-full">
+              <TabsTrigger 
+                value="false" 
+                className="flex items-center justify-center"
+              >
+                Safe Mode
               </TabsTrigger>
-              <TabsTrigger value="true" className="rounded-r-lg px-4 py-2">
+              <TabsTrigger 
+                value="true" 
+                className="flex items-center justify-center"
+              >
                 Unsafe Mode
               </TabsTrigger>
             </TabsList>
@@ -197,7 +202,12 @@ export default function AirdropFormUI(props: Props) {
       </div>
       
       <form onSubmit={handleSubmit} className="space-y-6 bg-transparent">
-        <InputForm label="Token address" placeholder="0x..." value={tokenAddress} onChange={(e) => setTokenAddress(e.target.value)} />
+        <InputForm 
+          label="Token address" 
+          placeholder="0x..." 
+          value={tokenAddress} 
+          onChange={(e) => setTokenAddress(e.target.value)} 
+        />
         <InputForm
           label="Recipients (comma or newline)"
           placeholder="0xabc..., 0xdef...  (or newline separated)"
@@ -212,9 +222,22 @@ export default function AirdropFormUI(props: Props) {
           onChange={(e) => setAmounts(e.target.value)}
           large
         />
-        <CountsGrid recipientsCount={recipientsList.length} amountsCount={amountsList.length} totalBig={totalBig} />
+        <div className="overflow-x-auto">
+          <CountsGrid 
+            recipientsCount={recipientsList.length} 
+            amountsCount={amountsList.length} 
+            totalBig={totalBig} 
+          />
+        </div>
         {/^\s*0x[a-fA-F0-9]{40}\s*$/.test(tokenAddress) && (
-          <TransactionDetails decimals={decimals} name={name} totalBig={totalBig} balanceRaw={balanceRaw} />
+          <div className="overflow-x-auto">
+            <TransactionDetails 
+              decimals={decimals} 
+              name={name} 
+              totalBig={totalBig} 
+              balanceRaw={balanceRaw} 
+            />
+          </div>
         )}
         {localIsUnsafeMode && <ModeBanner />}
         {error && <div className="p-3 bg-red-900/30 border border-red-700/30 rounded-lg text-red-300 text-sm">{error}</div>}
@@ -222,7 +245,7 @@ export default function AirdropFormUI(props: Props) {
           <button
             type="submit"
             disabled={isUserFacingProcessing() || (!hasEnoughTokens && /^\s*0x[a-fA-F0-9]{40}\s*$/.test(tokenAddress))}
-            className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 text-white rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 via-purple-600 to-teal-600 text-white rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
           >
             {!hasEnoughTokens && /^\s*0x[a-fA-F0-9]{40}\s*$/.test(tokenAddress) ? "Insufficient token balance" : getButtonContent()}
           </button>

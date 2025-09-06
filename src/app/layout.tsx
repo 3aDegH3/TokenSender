@@ -4,7 +4,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { type ReactNode } from "react";
 import { Providers } from "./providers";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export const metadata: Metadata = {
   title: "TSender",
@@ -20,7 +19,9 @@ export default function RootLayout(props: { children: ReactNode }) {
       <body className="bg-zinc-50">
         <Providers>
           <Header />
-          {props.children}
+          <main>
+            {props.children}
+          </main>
         </Providers>
       </body>
     </html>
